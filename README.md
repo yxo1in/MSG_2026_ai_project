@@ -117,9 +117,9 @@ git pull origin main
 ```
 
 ### skill
-front : React
-back: node.js(express)
-db : mysql, railway
+- front : React
+- back: node.js(express)
+- db : mysql, railway
 
 
 ### 주의

@@ -19,6 +19,13 @@ code .
 
 ### 개발 흐름
 
+0. **최신 main 받아오기**
+
+```
+git checkout main
+git pull origin main
+```
+
 1. **개인 브랜치 생성**
 
 ```

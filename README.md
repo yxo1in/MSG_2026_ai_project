@@ -31,7 +31,15 @@ cd client
 npm install
 ```
 
-5. `.env` 파일 생성 (선배한테 물어보기)
+5. `.env` 파일 생성 (선배한테 요청)
+
+6. migrate.js 실행
+   ```
+   cd server
+   node migrate.js
+   ```
+
+8. mysql workbench에 데이터베이스 추가하기 (선배한테 요청)
 
 ### 이슈 생성 방법
 

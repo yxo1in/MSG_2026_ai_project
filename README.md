@@ -13,7 +13,7 @@
 2. vs code 실행
 
 ```
-cd MSG_2026_ai_project.git
+cd MSG_2026_ai_project
 code .
 ```
 

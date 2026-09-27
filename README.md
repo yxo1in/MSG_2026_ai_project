@@ -13,7 +13,7 @@
 2. vs code 실행
 
 ```
-cd MSG_2026_ai_project.git
+cd MSG_2026_ai_project
 code .
 ```
 
@@ -22,10 +22,9 @@ code .
 1. **개인 브랜치 생성**
 
 ```
-git checkout -b feat/브랜치이름
+git checkout -b feat/자기이름 or 이슈 이름
 ```
 
-예: `feature/login-page`, `feature/gallery-api` 등 본인 작업 단위로 이름 짓기
 
 2. **브랜치로 체크아웃** (이미 만든 브랜치가 있는 경우)
 

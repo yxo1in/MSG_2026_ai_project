@@ -24,7 +24,6 @@ cd server
 npm install
 ```
 
-
 4. client 패키지 설치
 
 ```
@@ -33,6 +32,23 @@ npm install
 ```
 
 5. `.env` 파일 생성 (선배한테 물어보기)
+
+### 이슈 생성 방법
+
+1. GitHub 레포 → **Issues** 탭 클릭
+2. **New issue** 클릭
+3. 템플릿 선택 (원하는 유형 클릭)
+
+   | 템플릿 | 언제 쓰나요 |
+   |---|---|
+   | 🐛 bug | 오류가 나거나 예상과 다르게 동작할 때 |
+   | ✨ feat | 새로운 기능을 추가하고 싶을 때 |
+   | 🔧 fix | 버그는 아니지만 수정/개선이 필요할 때 |
+
+4. 템플릿 양식대로 내용 작성 후 **Submit new issue**
+5. 작업 시작할 때 브랜치 이름에 이슈 내용 반영하면 좋음
+   예: `feat/12-login-page` (12는 이슈 번호)
+6. 관련 PR 만들 때 본문에 `Closes #이슈번호` 적어두면, merge 시 이슈가 자동으로 닫힘
 
 ### 개발 흐름
 
@@ -48,7 +64,6 @@ git pull origin main
 ```
 git checkout -b feat/자기이름 or 이슈 이름
 ```
-
 
 2. **브랜치로 체크아웃** (이미 만든 브랜치가 있는 경우)
 
@@ -68,7 +83,7 @@ git commit -m "커밋 메시지 작성"
 4. **원격 저장소에 푸시**
 
 ```
-git push origin feature/브랜치이름
+git push origin feat/브랜치이름
 ```
 
 5. **메인에 병합 (Pull Request)**

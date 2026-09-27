@@ -71,6 +71,7 @@ git pull origin main
 
 ```
 git checkout -b feat/자기이름 or 이슈 이름
+git push origin 브랜치명
 ```
 
 2. **브랜치로 체크아웃** (이미 만든 브랜치가 있는 경우)

@@ -17,6 +17,23 @@ cd MSG_2026_ai_project
 code .
 ```
 
+3. server 패키지 설치
+
+```
+cd server
+npm install
+```
+
+
+4. client 패키지 설치
+
+```
+cd client
+npm install
+```
+
+5. `.env` 파일 생성 (선배한테 물어보기)
+
 ### 개발 흐름
 
 0. **최신 main 받아오기**

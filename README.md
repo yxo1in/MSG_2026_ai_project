@@ -116,6 +116,12 @@ git checkout main
 git pull origin main
 ```
 
+### skill
+front : React
+back: node.js(express)
+db : mysql, railway
+
+
 ### 주의
 
 - ⚠️ **절대 `main` 브랜치에서 직접 작업하지 말 것** — 반드시 개인 브랜치(`feat/...`)에서 작업

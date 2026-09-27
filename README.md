@@ -24,7 +24,6 @@ cd server
 npm install
 ```
 
-`package.json`에 정리된 패키지들(express, mysql2, dotenv, cors, nodemon)이 한 번에 설치됩니다.
 
 4. client 패키지 설치
 

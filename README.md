@@ -22,7 +22,7 @@ code .
 ```
 cd server
 npm install
-```
+``` 
 
 4. client 패키지 설치
 

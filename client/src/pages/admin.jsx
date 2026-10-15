@@ -1,9 +1,9 @@
-import styles from '../styles/admin.module.css'
+import styles from '../styles/Admin.module.css'
 
 export const Admin = () => {
   return (
     <div>
-      <div>ddd</div>
+      <div></div>
     </div>
   );
 };

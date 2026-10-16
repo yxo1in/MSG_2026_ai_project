@@ -1,7 +1,16 @@
 .header {
   display: flex;
-  width: 100%;
-  padding: 20px 36px;
+  padding: clamp(20px, 1.8vw, 40px);
   align-items: center;
-  gap: 10px;
+  border-bottom: 1px solid rgba(201, 201, 201, 0.6);
+}
+
+.title {
+  color: #000;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: clamp(24px, 2vw, 40px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;  
 }

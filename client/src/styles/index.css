@@ -4,7 +4,10 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+a {
+  text-decoration: none;
+  color: inherit;
+}
 @font-face {
   font-family: "Inter";
   src: url("/fonts/InterVariable.ttf") format("truetype");
@@ -14,10 +17,9 @@
 }
 
 @font-face {
-	font-family: 'Pretendard Variable';
-	font-weight: 45 920;
-	font-style: normal;
-	font-display: swap;
-	src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
 }
-

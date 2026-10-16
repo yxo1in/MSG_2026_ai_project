@@ -1,0 +1,43 @@
+.admin {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyWrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.5vw, 28px);
+  flex: 1;
+  min-height: 0;
+}
+
+.sortWrap {
+  display: flex;
+  width: 100%;
+  padding: 10px clamp(24px, 2.2vw, 43px);
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.sortText {
+  color: #000;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: clamp(14px, 0.95vw, 18px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.projectWrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3.6vw, 69px);
+  width: 100%;
+  padding: 0 clamp(20px, 1.9vw, 36px);
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+}

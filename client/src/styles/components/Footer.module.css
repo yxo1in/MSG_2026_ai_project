@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  width: 100%;
+  padding: clamp(10px, 1vw, 17px) 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.text {
+  color: #000;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: clamp(24px, 2vw, 40px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

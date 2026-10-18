@@ -87,6 +87,7 @@
   background: #fff;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
+  cursor: text;
 }
 
 .searchInput {
@@ -118,9 +119,19 @@
   border-radius: 50%;
   background: #5046e5;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.searchButton:hover {
+  background: #3d34c9;
 }
 
 .searchIcon {
   width: 50%;
   height: 50%;
+  transition: transform 0.2s ease;
+}
+
+.searchButton:hover .searchIcon {
+  transform: translateY(-8%);
 }

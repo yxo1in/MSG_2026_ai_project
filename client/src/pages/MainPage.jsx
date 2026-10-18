@@ -1,7 +1,10 @@
+import { useRef } from "react";
 import styles from "../styles/MainPage.module.css";
 import { Header } from "../components/Header";
 
 export const MainPage = () => {
+  const inputRef = useRef(null);
+
   return (
     <div>
       <Header />
@@ -25,8 +28,12 @@ export const MainPage = () => {
           </div>
         </div>
         <div className={styles.searchWrap}>
-          <div className={styles.searchBox}>
+          <div
+            className={styles.searchBox}
+            onClick={() => inputRef.current?.focus()}
+          >
             <input
+              ref={inputRef}
               className={styles.searchInput}
               type="text"
               placeholder="하루를 기록 할 수 있는 일기장 웹사이트 만들어줘"

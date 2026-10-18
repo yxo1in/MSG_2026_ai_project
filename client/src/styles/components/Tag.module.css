@@ -7,6 +7,13 @@
   border-radius: 100px;
   border: 0.5px solid #999999;
   background: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.wrap:hover {
+  border-color: #5046e5;
+  background: #f1f0fd;
 }
 
 .wrap p {
@@ -16,4 +23,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  transition: color 0.2s ease;
+}
+
+.wrap:hover p {
+  color: #5046e5;
 }

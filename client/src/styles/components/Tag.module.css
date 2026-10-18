@@ -1,0 +1,31 @@
+.wrap {
+  display: flex;
+  padding: clamp(8px, 0.8vw, 15px) clamp(12px, 1vw, 20px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6px, 0.5vw, 10px);
+  border-radius: 100px;
+  border: 0.5px solid #999999;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.wrap:hover {
+  border-color: #5046e5;
+  background: #f1f0fd;
+}
+
+.wrap p {
+  color: #4D4D4D;
+  font-family: "Pretendard Variable";
+  font-size: clamp(14px, 1.05vw, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  transition: color 0.2s ease;
+}
+
+.wrap:hover p {
+  color: #5046e5;
+}

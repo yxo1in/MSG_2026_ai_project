@@ -1,0 +1,67 @@
+.body {
+  display: flex;
+  width: 100%;
+  gap: clamp(32px, 3.3vw, 64px);
+  padding-top: clamp(80px, 8.75vw, 168px);
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.titleWrap {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 0.5vw, 10px);
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.title {
+  color: #000;
+  text-align: center;
+  font-family: "Pretendard Variable";
+  font-size: clamp(48px, 5.2vw, 100px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6px, 0.5vw, 10px);
+  align-self: stretch;
+}
+
+.container {
+  display: flex;
+  padding: clamp(6px, 0.5vw, 10px) clamp(12px, 1vw, 20px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6px, 0.5vw, 10px);
+  border-radius: clamp(12px, 1vw, 20px);
+  background: #5046e5;
+}
+.noteWrap {
+  display: flex;
+  padding: clamp(6px, 0.5vw, 10px);
+  justify-content: center;
+  align-items: center;
+}
+.note {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Pretendard Variable";
+  font-size: clamp(16px, 1.25vw, 24px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: clamp(14px, 1.05vw, 20px);
+}

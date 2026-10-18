@@ -43,3 +43,14 @@
   font-weight: 600;
   line-height: normal;
 }
+
+.deleteButton {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #5046e5;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}

@@ -1,9 +1,16 @@
 import { useRef } from "react";
 import styles from "../styles/MainPage.module.css";
 import { Header } from "../components/Header";
+import { Tag } from "../components/Tag";
 
 export const MainPage = () => {
   const inputRef = useRef(null);
+  const TAGS = [
+    "공부 계획표를 짜주는 웹사이트",
+    "독서기록 할 수 있는 웹사이트",
+    "여행계획을 정리해주는 웹사이트",
+    "나만의 귀여운 메모장 만들기"
+  ]
 
   return (
     <div>
@@ -54,7 +61,15 @@ export const MainPage = () => {
             </button>
           </div>
         </div>
-        <div></div>
+        <div className={styles.tagContainer}>
+          <div className={styles.tagWrap}>
+            {TAGS.map((t) => (
+              <Tag
+                text={t}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

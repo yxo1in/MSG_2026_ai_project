@@ -100,7 +100,7 @@
   font-family: "Pretendard Variable";
   font-size: clamp(14px, 1.15vw, 22px);
   font-style: normal;
-  font-weight:400;
+  font-weight: 400;
 }
 
 .searchInput::placeholder {
@@ -135,3 +135,23 @@
 .searchButton:hover .searchIcon {
   transform: translateY(-8%);
 }
+
+.tagContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.tagWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  align-self: stretch;
+}
+
+

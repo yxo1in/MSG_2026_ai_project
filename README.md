@@ -121,6 +121,17 @@ git pull origin main
 - back: node.js(express)
 - db : mysql, railway
 
+### 갤러리 페이지
+
+- 주소: `http://localhost:5173/gallery`
+- 서버: `server` 폴더에서 `.env`에 DB 정보를 설정한 뒤 `npm start`
+- 클라이언트: `client` 폴더에서 `npm install` 후 `npm run dev`
+- 운영자가 공개 승인한 작품(`sessions.is_public = TRUE`)만 표시됩니다.
+- 작품 이미지와 닉네임을 표시하며, 썸네일 선택 또는 좌우 버튼으로 작품을 이동합니다.
+- 목록 조회 실패 시 다시 시도할 수 있습니다. 승인된 작품이 없으면 빈 목록 안내가 표시됩니다.
+- 서버 API 테스트: `server` 폴더에서 `npm test` (실제 DB를 변경하지 않습니다.)
+- 클라이언트 빌드 확인: `client` 폴더에서 `npm run build`
+
 
 ### 주의
 

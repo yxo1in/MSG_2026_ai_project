@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import styles from "../styles/Gallery.module.css";
 
 const PAGE_SIZE = 6;
+const REFRESH_INTERVAL_MS = 60_000;
 const projectTitle = (project) => project.title?.trim() || "이름 없는 작품";
 
 function GalleryImage({ project, featured = false }) {
@@ -27,34 +28,69 @@ function GalleryImage({ project, featured = false }) {
 }
 
 export const Gallery = () => {
-  const [result, setResult] = useState({ status: "loading", projects: [] });
+  const [result, setResult] = useState({ status: "loading", projects: [], activeIndex: 0 });
   const [attempt, setAttempt] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
   const thumbnailsRef = useRef(null);
 
   useEffect(() => {
     const controller = new AbortController();
+    let inFlight = false;
 
-    fetch("/api/gallery", { signal: controller.signal })
-      .then((response) => {
+    const refresh = async () => {
+      if (inFlight || controller.signal.aborted || document.visibilityState === "hidden") return;
+      inFlight = true;
+
+      try {
+        const response = await fetch("/api/gallery", {
+          signal: controller.signal,
+          cache: "no-store",
+        });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
-      .then((projects) => {
+        const projects = await response.json();
         if (!Array.isArray(projects)) throw new Error("Invalid gallery response");
-        setResult({ status: "ready", projects });
-        setActiveIndex(0);
-      })
-      .catch((error) => {
-        if (error.name !== "AbortError") {
-          setResult({ status: "error", projects: [] });
-        }
-      });
+        if (controller.signal.aborted) return;
 
-    return () => controller.abort();
+        setResult((previous) => {
+          const selectedId = previous.projects[previous.activeIndex]?.id;
+          const selectedIndex = projects.findIndex((project) => project.id === selectedId);
+          return {
+            status: "ready",
+            projects,
+            activeIndex: selectedIndex >= 0
+              ? selectedIndex
+              : Math.min(previous.activeIndex, Math.max(0, projects.length - 1)),
+          };
+        });
+      } catch (error) {
+        if (error.name !== "AbortError" && !controller.signal.aborted) {
+          // Keep the last successful list visible during temporary refresh failures.
+          setResult((previous) => previous.status === "ready"
+            ? previous
+            : { status: "error", projects: [], activeIndex: 0 });
+        }
+      } finally {
+        inFlight = false;
+      }
+    };
+
+    refresh();
+    const interval = window.setInterval(refresh, REFRESH_INTERVAL_MS);
+    document.addEventListener("visibilitychange", refresh);
+
+    return () => {
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", refresh);
+      controller.abort();
+    };
   }, [attempt]);
 
-  const { projects, status } = result;
+  const { projects, status, activeIndex } = result;
+  const setActiveIndex = (nextIndex) => {
+    setResult((previous) => ({
+      ...previous,
+      activeIndex: typeof nextIndex === "function" ? nextIndex(previous.activeIndex) : nextIndex,
+    }));
+  };
   const selected = projects[activeIndex];
   const pageStart = Math.floor(activeIndex / PAGE_SIZE) * PAGE_SIZE;
   const visibleProjects = projects.slice(pageStart, pageStart + PAGE_SIZE);
@@ -71,10 +107,10 @@ export const Gallery = () => {
     } else if (activeBounds.right > trackBounds.right - 4) {
       track.scrollLeft += activeBounds.right - trackBounds.right + 4;
     }
-  }, [activeIndex, status]);
+  }, [activeIndex, status, projects]);
 
   const retry = () => {
-    setResult({ status: "loading", projects: [] });
+    setResult({ status: "loading", projects: [], activeIndex: 0 });
     setAttempt((previous) => previous + 1);
   };
 

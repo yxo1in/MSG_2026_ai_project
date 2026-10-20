@@ -9,7 +9,8 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
-  dateStrings: false,
+  // DB(DATETIME)는 UTC 기준으로 저장되므로 UTC로 해석해 올바른 시각을 반환
+  timezone: 'Z',
 });
 
 module.exports = pool;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/Admin.module.css";
+import styles from "../styles/admin.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Project } from "../components/Project";

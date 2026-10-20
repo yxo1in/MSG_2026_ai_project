@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Admin } from "./pages/Admin";
+import { Admin } from "./pages/admin";
 import { MainPage } from "./pages/MainPage";
+import { Gallery } from "./pages/Gallery";
 import "./styles/index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

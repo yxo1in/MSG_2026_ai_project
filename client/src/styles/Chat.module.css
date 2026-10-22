@@ -1,0 +1,186 @@
+/* 왼쪽 채팅 + 오른쪽 미리보기 */
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #f9f9fb;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: clamp(320px, 28vw, 540px);
+  height: 100%;
+  border-right: 1px solid #f0f0f2;
+  background-color: #f9f9fb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 상단 헤더 */
+.header {
+  padding: 24px 20px 16px 20px;
+  border-bottom: 1px solid #f0f0f2;
+  background-color: #ffffff;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+/* 채팅 메시지 목록 영역 */
+.chatArea {
+  flex: 1;
+  padding: 24px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 메시지 공통 스타일 */
+.message {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* 오른쪽 사용자 메시지 (진한 보라색) */
+.userMessage {
+  align-self: flex-end;
+  background-color: #6c5ce7;
+  color: #ffffff;
+  border-top-right-radius: 4px;
+}
+
+/* 왼쪽 AI/상대방 메시지 (연한 보라색) */
+.botMessage {
+  align-self: flex-start;
+  background-color: #dcd6ff;
+  color: #111111;
+  border-top-left-radius: 4px;
+}
+
+/* 로딩 표시 (점 3개) */
+.loadingDots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+}
+
+.loadingDots span {
+  width: 10px;
+  height: 10px;
+  background-color: #d1d1d6;
+  border-radius: 50%;
+}
+
+/* 하단 입력창 전체 영역 */
+.inputWrapper {
+  padding: 16px 20px 24px 20px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 28px;
+  padding: 8px 8px 8px 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.inputField {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #333333;
+  background: transparent;
+}
+
+.inputField::placeholder {
+  color: #999999;
+}
+
+/* 전송 버튼 */
+.sendButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #5846f6;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sendButton:hover {
+  background-color: #4332d9;
+}
+
+/* 프롬프트 사용 횟수 */
+.promptCount {
+  margin: 0 0 8px 0;
+  padding-right: 8px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6c5ce7;
+}
+
+.sendButton:disabled {
+  background-color: #c9c5f5;
+  cursor: not-allowed;
+}
+
+
+/* 오른쪽 실행 화면 */
+.preview {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.previewFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+}
+
+.previewEmpty {
+  color: #999999;
+  font-size: clamp(14px, 1.05vw, 20px);
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+    height: 55%;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f2;
+  }
+
+  .preview {
+    height: 45%;
+  }
+}

@@ -4,11 +4,23 @@ const pool = require('./pool');
 async function findAllProjects({ sort = 'latest' } = {}) {
   const order = sort === 'oldest' ? 'ASC' : 'DESC';
   const [rows] = await pool.query(
-    `SELECT id, nickname, thumbnail_url, is_public, created_at
-       FROM sessions
-      ORDER BY created_at ${order}, id ${order}`
+    `SELECT s.id, s.nickname, s.thumbnail_url, s.is_public, s.created_at,
+            s.latest_code IS NOT NULL AS has_code,
+            (SELECT m.content
+               FROM messages m
+              WHERE m.session_id = s.id AND m.role = 'user'
+              ORDER BY m.id
+              LIMIT 1) AS first_prompt
+       FROM sessions s
+      ORDER BY s.created_at ${order}, s.id ${order}`
   );
   return rows;
+}
+
+// 미리보기용 최신 코드
+async function findProjectCode(id) {
+  const [[row]] = await pool.query('SELECT latest_code FROM sessions WHERE id = ?', [id]);
+  return row?.latest_code ?? null;
 }
 
 // 프로젝트 상세 (세션 + 대화 내역)
@@ -49,6 +61,7 @@ async function deleteProject(id) {
 module.exports = {
   findAllProjects,
   findProjectById,
+  findProjectCode,
   updateProjectVisibility,
   deleteProject,
 };

@@ -7,7 +7,13 @@
   min-width: 0;             
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .image {
+  position: relative;
+  overflow: hidden;
   display: flex;
   width: 100%;
   aspect-ratio: 343 / 235;  
@@ -24,9 +30,16 @@
   justify-content: space-between;
   align-items: flex-end;
   align-self: stretch;
+  gap: clamp(8px, 0.8vw, 12px);
 }
 
+/* 긴 제목은 한 줄로 자르고 ... 표시 */
 .title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #000;
   font-family: "Pretendard Variable", sans-serif;
   font-size: clamp(16px, 1.25vw, 24px);
@@ -36,6 +49,8 @@
 }
 
 .date {
+  flex-shrink: 0;
+  white-space: nowrap;
   color: #000;
   font-family: "Pretendard Variable", sans-serif;
   font-size: clamp(14px, 1.05vw, 20px);
@@ -44,7 +59,23 @@
   line-height: normal;
 }
 
+/* 생성된 웹사이트를 4배 크기로 렌더링한 뒤 1/4로 축소해 카드에 맞춤 */
+.preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  border: none;
+  background: #fff;
+  transform: scale(0.25);
+  transform-origin: top left;
+  pointer-events: none;
+}
+
 .deleteButton {
+  position: relative;
+  z-index: 1;
   padding: 0;
   border: none;
   background: none;

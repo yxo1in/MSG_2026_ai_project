@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/admin.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -14,6 +15,7 @@ export const Admin = () => {
   const [projects, setProjects] = useState([]);
   const [sort, setSort] = useState("latest");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -61,8 +63,10 @@ export const Admin = () => {
           {projects.map((p) => (
             <Project
               key={p.id}
-              title={p.title}
+              title={p.title ?? "이름 없는 작품"}
               date={formatDate(p.createdAt)}
+              previewUrl={p.hasPreview ? `/api/admin/projects/${p.id}/preview` : null}
+              onClick={() => navigate(`/chat/${p.id}`)}
               onDelete={() => handleDelete(p.id)}
             />
           ))}

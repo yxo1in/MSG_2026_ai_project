@@ -2,6 +2,7 @@ const express = require('express');
 const {
   findAllProjects,
   findProjectById,
+  findProjectCode,
   updateProjectVisibility,
   deleteProject,
 } = require('../db/adminQueries');
@@ -12,8 +13,10 @@ const router = express.Router();
 function toProject(row) {
   return {
     id: row.id,
-    title: row.nickname,
+    // 작품 이름이 아직 없으면 첫 프롬프트를 제목으로 사용
+    title: row.nickname || row.first_prompt || null,
     thumbnail: row.thumbnail_url,
+    hasPreview: Boolean(row.has_code),
     isPublic: Boolean(row.is_public),
     createdAt: row.created_at,
   };
@@ -32,6 +35,19 @@ function parseId(req, res) {
 router.get('/projects', async (req, res) => {
   const rows = await findAllProjects({ sort: req.query.sort });
   res.json(rows.map(toProject));
+});
+
+// GET /api/admin/projects/:id/preview  → 생성된 웹사이트 HTML (카드 미리보기 iframe용)
+router.get('/projects/:id/preview', async (req, res) => {
+  const id = parseId(req, res);
+  if (id === null) return;
+
+  const code = await findProjectCode(id);
+  if (!code) return res.status(404).json({ message: '미리보기가 없습니다.' });
+
+  // 주소를 직접 열어도 생성된 코드가 앱과 같은 출처 권한을 갖지 못하도록 샌드박스 적용
+  res.set('Content-Security-Policy', 'sandbox allow-scripts');
+  res.type('html').send(code);
 });
 
 // GET /api/admin/projects/:id

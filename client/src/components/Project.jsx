@@ -13,7 +13,7 @@ export const Project = ({ title, date, previewUrl, onClick, onDelete }) => {
             src={previewUrl}
             title={`${title ?? "프로젝트"} 미리보기`}
             // 생성된 코드가 앱 자체에 접근하지 못하도록 스크립트만 허용
-            sandbox="allow-scripts"
+            sandbox="allow-scripts allow-forms"
             loading="lazy"
             tabIndex={-1}
           />

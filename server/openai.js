@@ -7,6 +7,8 @@ const SYSTEM_PROMPT = [
   '이 코드는 화면에 바로 실행되어 보여지므로 반드시 동작하는 완전한 코드여야 합니다.',
   '답변은 한두 문장의 짧은 설명과 ```html 코드 블록 하나로 구성하세요.',
   '수정 요청이 와도 변경 부분만이 아니라 항상 전체 코드를 다시 출력하세요.',
+  'The generated page runs in a sandboxed iframe with an opaque origin. Never use localStorage, sessionStorage, IndexedDB, cookies, or other origin-based storage APIs. Keep state in JavaScript memory instead.',
+  'Handle every form submission with JavaScript and event.preventDefault(). Do not submit forms to external URLs or rely on page navigation.',
 ].join('\n');
 
 // history: [{ role: 'user' | 'assistant', content }]

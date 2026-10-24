@@ -148,12 +148,61 @@
 
 /* 오른쪽 실행 화면 */
 .preview {
+  position: relative;
   display: flex;
   flex: 1;
   min-width: 0;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+}
+
+.previewExpanded {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.expandButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  background: rgba(31, 28, 62, 0.82);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.expandButton:hover {
+  background: #5046e5;
+  transform: translateY(-2px);
+}
+
+.expandButton:focus-visible {
+  outline: 3px solid #5046e5;
+  outline-offset: 3px;
+}
+
+.expandButton svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .previewFrame {

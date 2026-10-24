@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Header } from '../components/Header';
+import { preparePreviewHtml } from '../utils/preparePreviewHtml';
 import styles from '../styles/Chat.module.css';
 
 const postJson = async (url, body) => {
@@ -24,6 +26,7 @@ export const Chat = () => {
     const [error, setError] = useState(null);
     const [maxPrompts, setMaxPrompts] = useState(5);
     const [code, setCode] = useState(null);
+    const [previewExpanded, setPreviewExpanded] = useState(false);
     const chatAreaRef = useRef(null);
 
     // 마지막 user 메시지에 대한 assistant 응답 요청
@@ -77,6 +80,7 @@ export const Chat = () => {
 
     const usedPrompts = messages.filter((m) => m.role === 'user').length;
     const limitReached = usedPrompts >= maxPrompts;
+    const previewCode = code ? preparePreviewHtml(code) : null;
 
     const send = async () => {
         const prompt = input.trim();
@@ -102,9 +106,7 @@ export const Chat = () => {
         <div className={styles.layout}>
             <div className={styles.container}>
                 {/* 상단 헤더 */}
-                <header className={styles.header}>
-                    <h1 className={styles.title}>vibe.lab</h1>
-                </header>
+                <Header className={styles.header} />
 
                 {/* 채팅 메시지 목록 */}
                 <div className={styles.chatArea} ref={chatAreaRef}>
@@ -174,14 +176,34 @@ export const Chat = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.preview}>
-                {code ? (
+            <div
+                className={`${styles.preview} ${previewExpanded ? styles.previewExpanded : ''}`}
+            >
+                <button
+                    type="button"
+                    className={styles.expandButton}
+                    aria-label={previewExpanded ? '미리보기 축소' : '미리보기 확대'}
+                    aria-pressed={previewExpanded}
+                    title={previewExpanded ? '축소' : '전체화면'}
+                    onClick={() => setPreviewExpanded((expanded) => !expanded)}
+                >
+                    {previewExpanded ? (
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
+                        </svg>
+                    ) : (
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" />
+                        </svg>
+                    )}
+                </button>
+                {previewCode ? (
                     <iframe
                         className={styles.previewFrame}
                         title="미리보기"
                         // 생성된 코드가 앱 자체에 접근하지 못하도록 스크립트만 허용
-                        sandbox="allow-scripts"
-                        srcDoc={code}
+                        sandbox="allow-scripts allow-forms"
+                        srcDoc={previewCode}
                     />
                 ) : (
                     <p className={styles.previewEmpty}>

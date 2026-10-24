@@ -46,7 +46,7 @@ router.get('/projects/:id/preview', async (req, res) => {
   if (!code) return res.status(404).json({ message: '미리보기가 없습니다.' });
 
   // 주소를 직접 열어도 생성된 코드가 앱과 같은 출처 권한을 갖지 못하도록 샌드박스 적용
-  res.set('Content-Security-Policy', 'sandbox allow-scripts');
+  res.set('Content-Security-Policy', 'sandbox allow-scripts allow-forms');
   res.type('html').send(code);
 });
 
